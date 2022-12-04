@@ -37,7 +37,20 @@ public class Elf
 
     public bool Overlaps(Elf compareElf)
     {
-        return (LowerBound <= compareElf.LowerBound || LowerBound <= compareElf.LowerBound) || (UpperBound >= compareElf.UpperBound || LowerBound >= compareElf.UpperBound);
+        List<int> elf1 = new List<int>();
+        List<int> elf2 = new List<int>();
+
+        for (int i = LowerBound; i <= UpperBound; i++)
+        {
+            elf1.Add(i);
+        }
+
+        for (int i = compareElf.LowerBound; i <= compareElf.UpperBound; i++)
+        {
+            elf2.Add(i);
+        }
+
+        return elf1.Intersect(elf2).Any();
 
     }
 }
