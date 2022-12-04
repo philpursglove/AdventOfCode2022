@@ -1,6 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 
+using System.Reflection.Metadata.Ecma335;
+using AdventUtilities;
 
 List<string> input = File.ReadAllLines("InputFile.txt").ToList();
 
@@ -22,6 +24,9 @@ foreach (string line in input)
 Console.WriteLine(elves.Count(t => t.Item1.Contains(t.Item2) || t.Item2.Contains(t.Item1)));
 
 Console.WriteLine(elves.Count(t => t.Item1.Overlaps(t.Item2) || t.Item2.Overlaps(t.Item1)));
+
+Console.WriteLine(elves.Count(t => t.Item1.Overlaps2(t.Item2) || t.Item2.Overlaps2(t.Item1)));
+
 
 Console.ReadLine();
 
@@ -53,4 +58,12 @@ public class Elf
         return elf1.Intersect(elf2).Any();
 
     }
+
+    public bool Overlaps2(Elf compareElf)
+    {
+        if (LowerBound <= compareElf.LowerBound && (UpperBound.Between(compareElf.LowerBound, compareElf.UpperBound) || UpperBound > compareElf.UpperBound)) return true;
+        if (UpperBound >=  compareElf.UpperBound && (LowerBound.Between(compareElf.LowerBound, compareElf.UpperBound) || LowerBound < compareElf.LowerBound)) return true;
+        return false;
+    }
+
 }
