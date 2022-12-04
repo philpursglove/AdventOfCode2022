@@ -1,4 +1,6 @@
 ﻿using System.Drawing;
+using System.Reflection.PortableExecutable;
+using System.Security.Cryptography;
 using NUnit.Framework;
 
 namespace AdventUtilities;
@@ -50,5 +52,18 @@ public class IntExtensionsTests
 	public void Between(int lower, int upper, int between, bool expected)
 	{
 		Assert.That(between.Between(lower,upper), Is.EqualTo(expected));
+	}
+}
+
+[TestFixture]
+public class CharExtensionsTests
+{
+	[TestCase('a', 97, TestName = "Lower case")]
+	[TestCase('A', 65, TestName = "Upper case")]
+	[TestCase(' ', 32, TestName = "Punctuation")]
+	[TestCase('0', 48, TestName = "Numeric")]
+	public void AsciiCode(char letter, int expected)
+	{
+		Assert.That(letter.ToAscii(), Is.EqualTo(expected));
 	}
 }
