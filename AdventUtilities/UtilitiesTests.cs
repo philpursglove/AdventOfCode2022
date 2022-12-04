@@ -39,3 +39,16 @@ public class ManhattanDistanceTests
 		Assert.That(result, Is.EqualTo(2));
 	}
 }
+
+[TestFixture]
+public class IntExtensionsTests
+{
+	[TestCase(1,3,2,true)]
+	[TestCase(-3,-1,-2, true)]
+	[TestCase(1,3,4,false)]
+	[TestCase(-1,1,0,true)]
+	public void Between(int lower, int upper, int between, bool expected)
+	{
+		Assert.That(between.Between(lower,upper), Is.EqualTo(expected));
+	}
+}
