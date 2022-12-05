@@ -142,15 +142,15 @@ foreach (string move in moves)
             break;
     }
 
-    List<Crate> transfer = new List<Crate>();
+    Stack<Crate> transfer = new Stack<Crate>();
     for (int i = 0; i < number; i++)
     {
-        transfer.Add(sourceStack.Pop());
+        transfer.Push(sourceStack.Pop());
     }
 
-    foreach (Crate crate in transfer)
+    for (int i = 0; i < number; i++)
     {
-        destinationStack.Push(crate);
+        destinationStack.Push(transfer.Pop());
     }
 }
 
