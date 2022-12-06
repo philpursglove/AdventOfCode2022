@@ -1,7 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 
-using System.Reflection.Metadata.Ecma335;
 using AdventUtilities;
 
 List<string> input = File.ReadAllLines("InputFile.txt").ToList();
