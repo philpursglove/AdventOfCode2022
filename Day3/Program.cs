@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using AdventUtilities;
+
 List<string> input = File.ReadAllLines("InputFile.txt").ToList();
 
 //input = new List<string>
@@ -30,11 +32,11 @@ foreach (var letter in common)
 {
 	if (Char.IsLower(letter))
 	{
-		sum += (int) letter - 96;
+		sum += letter.ToAscii() - 96;
 	}
 	else
 	{
-		sum += (int) letter - 38;
+		sum += letter.ToAscii() - 38;
 	}
 }
 Console.WriteLine(sum);
@@ -71,11 +73,11 @@ foreach (var badge in badges)
 {
 	if (Char.IsLower(badge))
 	{
-		sum += (int)badge - 96;
+		sum += badge.ToAscii() - 96;
 	}
 	else
 	{
-		sum += (int)badge - 38;
+		sum += badge.ToAscii() - 38;
 	}
 }
 
