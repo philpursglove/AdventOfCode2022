@@ -54,7 +54,7 @@
         {
             List<int> values = new List<int>();
 
-            for (int i = 0; i < x--; i++)
+            for (int i = 0; i < x; i++)
             {
                 values.Add(grid[i, y]);
             }

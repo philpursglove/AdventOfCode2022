@@ -6,16 +6,16 @@ using AdventUtilities;
 
 int[,] grid = System.IO.File.ReadAllLines("InputFile.txt").ToIntGrid();
 
-List<string> input = new List<string>
-{
-    "30373",
-    "25512",
-    "65332",
-    "33549",
-    "35390",
-};
+//List<string> input = new List<string>
+//{
+//    "30373",
+//    "25512",
+//    "65332",
+//    "33549",
+//    "35390",
+//};
 
-grid = input.ToArray().ToIntGrid();
+//grid = input.ToArray().ToIntGrid();
 
 int visibleCount = 0;
 
@@ -120,7 +120,6 @@ for (int i = 0; i < grid.GetUpperBound(1) + 1; i++)
         }
 
         long scenicScore = westCount * eastCount * northCount * southCount;
-        Console.WriteLine(scenicScore);
         if (scenicScore > highestScenicScore)
         {
             highestScenicScore = scenicScore;
