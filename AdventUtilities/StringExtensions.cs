@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace AdventUtilities
             {
                 for (int j = 0; j < strings[i].Length; j++)
                 {
-                    grid[j, i] = strings[i].Substring(j, 1);
+                    grid[i, j] = strings[i].Substring(j, 1);
                 }
             }
 
@@ -31,11 +32,12 @@ namespace AdventUtilities
             {
                 for (int j = 0; j < strings[i].Length; j++)
                 {
-                    grid[j, i] = int.Parse(strings[i].Substring(j, 1));
+                    grid[i, j] = int.Parse(strings[i].Substring(j, 1));
                 }
             }
 
             return grid;
         }
+
     }
 }
