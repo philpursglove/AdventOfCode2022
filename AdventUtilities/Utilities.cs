@@ -1,7 +1,10 @@
-﻿namespace AdventUtilities
+﻿using System.Diagnostics;
+
+namespace AdventUtilities
 {
 	public static class Utilities
 	{
+		[DebuggerStepThrough]
 		public static int ManhattanDistance(object point1, object point2, string XPropertyName, string YPropertyName)
 		{
 			int x1 = getCoordinateValue(point1, XPropertyName);
