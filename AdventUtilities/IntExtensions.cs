@@ -1,7 +1,10 @@
-﻿namespace AdventUtilities
+﻿using System.Diagnostics;
+
+namespace AdventUtilities
 {
 	public static class IntExtensions
 	{
+        [DebuggerStepThrough]
 		public static bool Between(this int a, int lower, int upper)
 		{
 			if (lower > upper)

@@ -4,19 +4,19 @@
 
 using AdventUtilities;
 
-List<string> input = System.IO.File.ReadAllLines("InputFile.txt").ToList();
+//List<string> input = System.IO.File.ReadAllLines("InputFile.txt").ToList();
 
-//List<string> input = new List<string>()
-//{
-//	"R 4",
-//	"U 4",
-//	"L 3",
-//	"D 1",
-//	"R 4",
-//	"D 1",
-//	"L 5",
-//	"R 2"
-//};
+List<string> input = new List<string>()
+{
+	"R 5",
+	"U 8",
+	"L 8",
+	"D 3",
+	"R 17",
+	"D 10",
+	"L 25",
+	"U 20",
+};
 
 List<Move> moves = new List<Move>();
 
@@ -44,13 +44,21 @@ foreach (string line in input)
 	moves.Add(move);
 }
 
-Point start = new Point() { x = 0, y = 0 };
+//Point start = new Point() { x = 0, y = 0 };
 Point head = new Point { x = 0, y = 0 };
-Point tail = new Point { x = 0, y = 0 };
+Point knot1 = new Point { x = 0, y = 0 };
+Point knot2 = new Point { x = 0, y = 0 };
+Point knot3 = new Point { x = 0, y = 0 };
+Point knot4 = new Point { x = 0, y = 0 };
+Point knot5 = new Point { x = 0, y = 0 };
+Point knot6 = new Point { x = 0, y = 0 };
+Point knot7 = new Point { x = 0, y = 0 };
+Point knot8 = new Point { x = 0, y = 0 };
+Point knot9 = new Point { x = 0, y = 0 };
 
 List<Point> tailPoints = new List<Point>();
 
-tailPoints.Add(new Point() { x = tail.x, y = tail.y });
+tailPoints.Add(new Point() { x = knot9.x, y = knot9.y });
 
 foreach (Move move in moves)
 {
@@ -60,30 +68,68 @@ foreach (Move move in moves)
 			for (int i = 0; i < move.Distance; i++)
 			{
 				head.x -= 1;
-				MoveTail(head, tail);
+				MoveTail(head, knot1);
+				MoveTail(knot1, knot2);
+				MoveTail(knot2, knot3);
+				MoveTail(knot3, knot4);
+				MoveTail(knot4, knot5);
+				MoveTail(knot5, knot6);
+				MoveTail(knot6, knot7);
+				MoveTail(knot7, knot8);
+				MoveTail(knot8, knot9);
+
 			}
 			break;
 		case Direction.Right:
 			for (int i = 0; i < move.Distance; i++)
 			{
 				head.x += 1;
-				MoveTail(head, tail);
+				MoveTail(head, knot1);
+				MoveTail(knot1, knot2);
+				MoveTail(knot2, knot3);
+				MoveTail(knot3, knot4);
+				MoveTail(knot4, knot5);
+				MoveTail(knot5, knot6);
+				MoveTail(knot6, knot7);
+				MoveTail(knot7, knot8);
+				MoveTail(knot8, knot9);
 			}
 			break;
 		case Direction.Up:
 			for (int i = 0; i < move.Distance; i++)
 			{
 				head.y += 1;
-				MoveTail(head, tail);
+				MoveTail(head, knot1);
+				MoveTail(knot1, knot2);
+				MoveTail(knot2, knot3);
+				MoveTail(knot3, knot4);
+				MoveTail(knot4, knot5);
+				MoveTail(knot5, knot6);
+				MoveTail(knot6, knot7);
+				MoveTail(knot7, knot8);
+				MoveTail(knot8, knot9);
 			}
 			break;
 		case Direction.Down:
 			for (int i = 0; i < move.Distance; i++)
 			{
 				head.y -= 1;
-				MoveTail(head, tail);
+				MoveTail(head, knot1);
+				MoveTail(knot1, knot2);
+				MoveTail(knot2, knot3);
+				MoveTail(knot3, knot4);
+				MoveTail(knot4, knot5);
+				MoveTail(knot5, knot6);
+				MoveTail(knot6, knot7);
+				MoveTail(knot7, knot8);
+				MoveTail(knot8, knot9);
 			}
 			break;
+	}
+
+	if (!tailPoints.Contains(new Point { x = knot9.x, y = knot9.y }))
+	{
+		tailPoints.Add(new Point() { x = knot9.x, y = knot9.y });
 	}
 
 	//Console.ReadLine()
@@ -91,8 +137,8 @@ foreach (Move move in moves)
 
 Console.WriteLine($"head x: {head.x}");
 Console.WriteLine($"head y: {head.y}");
-Console.WriteLine($"tail x: {tail.x}");
-Console.WriteLine($"tail y: {tail.y}");
+Console.WriteLine($"tail x: {knot9.x}");
+Console.WriteLine($"tail y: {knot9.y}");
 
 
 Console.WriteLine(tailPoints.Count());
@@ -152,10 +198,6 @@ void MoveTail(Point point, Point tail1)
 
 	}
 
-	if (!tailPoints.Contains(new Point { x = tail1.x, y = tail1.y }))
-	{
-		tailPoints.Add(new Point() { x = tail1.x, y = tail1.y });
-	}
 
 }
 

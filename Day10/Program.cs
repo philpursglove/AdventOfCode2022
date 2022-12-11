@@ -1,160 +1,162 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿
+
+// See https://aka.ms/new-console-template for more information
 
 
 
 using AdventUtilities;
 
-List<string> input = System.IO.File.ReadAllLines("InputFile.txt").ToList();
+//List<string> input = System.IO.File.ReadAllLines("InputFile.txt").ToList();
 
-//List<string> input = new List<string>
-//{
-//	"addx 15",
-//	"addx -11",
-//	"addx 6",
-//	"addx -3",
-//	"addx 5",
-//	"addx -1",
-//	"addx -8",
-//	"addx 13",
-//	"addx 4",
-//	"noop",
-//	"addx -1",
-//	"addx 5",
-//	"addx -1",
-//	"addx 5",
-//	"addx -1",
-//	"addx 5",
-//	"addx -1",
-//	"addx 5",
-//	"addx -1",
-//	"addx -35",
-//	"addx 1",
-//	"addx 24",
-//	"addx -19",
-//	"addx 1",
-//	"addx 16",
-//	"addx -11",
-//	"noop",
-//	"noop",
-//	"addx 21",
-//	"addx -15",
-//	"noop",
-//	"noop",
-//	"addx -3",
-//	"addx 9",
-//	"addx 1",
-//	"addx -3",
-//	"addx 8",
-//	"addx 1",
-//	"addx 5",
-//	"noop",
-//	"noop",
-//	"noop",
-//	"noop",
-//	"noop",
-//	"addx -36",
-//	"noop",
-//	"addx 1",
-//	"addx 7",
-//	"noop",
-//	"noop",
-//	"noop",
-//	"addx 2	 ",
-//	"addx 6	 ",
-//	"noop",
-//	"noop",
-//	"noop",
-//	"noop",
-//	"noop",
-//	"addx 1",
-//	"noop",
-//	"noop",
-//	"addx 7	 ",
-//	"addx 1	 ",
-//	"noop",
-//	"addx -13",
-//	"addx 13",
-//	"addx 7",
-//	"noop",
-//	"addx 1",
-//	"addx -33",
-//	"noop",
-//	"noop",
-//	"noop",
-//	"addx 2",
-//	"noop",
-//	"noop",
-//	"noop",
-//	"addx 8",
-//	"noop",
-//	"addx -1",
-//	"addx 2",
-//	"addx 1",
-//	"noop",
-//	"addx 17",
-//	"addx -9",
-//	"addx 1",
-//	"addx 1",
-//	"addx -3",
-//	"addx 11",
-//	"noop",
-//	"noop",
-//	"addx 1",
-//	"noop",
-//	"addx 1",
-//	"noop",
-//	"noop",
-//	"addx -13",
-//	"addx -19",
-//	"addx 1",
-//	"addx 3",
-//	"addx 26",
-//	"addx -30",
-//	"addx 12",
-//	"addx -1",
-//	"addx 3",
-//	"addx 1",
-//	"noop",
-//	"noop",
-//	"noop",
-//	"addx -9",
-//	"addx 18",
-//	"addx 1",
-//	"addx 2",
-//	"noop",
-//	"noop",
-//	"addx 9",
-//	"noop",
-//	"noop",
-//	"noop",
-//	"addx -1",
-//	"addx 2",
-//	"addx -37",
-//	"addx 1",
-//	"addx 3",
-//	"noop",
-//	"addx 15",
-//	"addx -21",
-//	"addx 22",
-//	"addx -6",
-//	"addx 1",
-//	"noop",
-//	"addx 2",
-//	"addx 1",
-//	"noop",
-//	"addx -10",
-//	"noop",
-//	"noop",
-//	"addx 20",
-//	"addx 1",
-//	"addx 2",
-//	"addx 2",
-//	"addx -6 ",
-//	"addx -11",
-//	"noop",
-//	"noop",
-//	"noop"
-//};
+List<string> input = new List<string>
+{
+	"addx 15",
+	"addx -11",
+	"addx 6",
+	"addx -3",
+	"addx 5",
+	"addx -1",
+	"addx -8",
+	"addx 13",
+	"addx 4",
+	"noop",
+	"addx -1",
+	"addx 5",
+	"addx -1",
+	"addx 5",
+	"addx -1",
+	"addx 5",
+	"addx -1",
+	"addx 5",
+	"addx -1",
+	"addx -35",
+	"addx 1",
+	"addx 24",
+	"addx -19",
+	"addx 1",
+	"addx 16",
+	"addx -11",
+	"noop",
+	"noop",
+	"addx 21",
+	"addx -15",
+	"noop",
+	"noop",
+	"addx -3",
+	"addx 9",
+	"addx 1",
+	"addx -3",
+	"addx 8",
+	"addx 1",
+	"addx 5",
+	"noop",
+	"noop",
+	"noop",
+	"noop",
+	"noop",
+	"addx -36",
+	"noop",
+	"addx 1",
+	"addx 7",
+	"noop",
+	"noop",
+	"noop",
+	"addx 2	 ",
+	"addx 6	 ",
+	"noop",
+	"noop",
+	"noop",
+	"noop",
+	"noop",
+	"addx 1",
+	"noop",
+	"noop",
+	"addx 7	 ",
+	"addx 1	 ",
+	"noop",
+	"addx -13",
+	"addx 13",
+	"addx 7",
+	"noop",
+	"addx 1",
+	"addx -33",
+	"noop",
+	"noop",
+	"noop",
+	"addx 2",
+	"noop",
+	"noop",
+	"noop",
+	"addx 8",
+	"noop",
+	"addx -1",
+	"addx 2",
+	"addx 1",
+	"noop",
+	"addx 17",
+	"addx -9",
+	"addx 1",
+	"addx 1",
+	"addx -3",
+	"addx 11",
+	"noop",
+	"noop",
+	"addx 1",
+	"noop",
+	"addx 1",
+	"noop",
+	"noop",
+	"addx -13",
+	"addx -19",
+	"addx 1",
+	"addx 3",
+	"addx 26",
+	"addx -30",
+	"addx 12",
+	"addx -1",
+	"addx 3",
+	"addx 1",
+	"noop",
+	"noop",
+	"noop",
+	"addx -9",
+	"addx 18",
+	"addx 1",
+	"addx 2",
+	"noop",
+	"noop",
+	"addx 9",
+	"noop",
+	"noop",
+	"noop",
+	"addx -1",
+	"addx 2",
+	"addx -37",
+	"addx 1",
+	"addx 3",
+	"noop",
+	"addx 15",
+	"addx -21",
+	"addx 22",
+	"addx -6",
+	"addx 1",
+	"noop",
+	"addx 2",
+	"addx 1",
+	"noop",
+	"addx -10",
+	"noop",
+	"noop",
+	"addx 20",
+	"addx 1",
+	"addx 2",
+	"addx 2",
+	"addx -6 ",
+	"addx -11",
+	"noop",
+	"noop",
+	"noop"
+};
 
 List<Operation> operations = new List<Operation>();
 
@@ -174,7 +176,7 @@ foreach (string inputLine in input)
 	operations.Add(operation);
 }
 
-List<int> cycleTimes = new List<int>() {20, 60, 100, 140, 180, 220};
+List<int> cycleTimes = new List<int>() { 20, 60, 100, 140, 180, 220 };
 List<int> signalStrengths = new List<int>();
 int register = 1;
 int cycle = 0;
@@ -201,13 +203,101 @@ foreach (Operation operation in operations)
 
 Console.WriteLine(signalStrengths.Sum());
 
+register = 1;
+cycle = 1;
+List<string> display = new List<string>();
+string line = "";
+foreach (Operation operation in operations)
+{
+	string pixel = null;
+	switch (operation.Name)
+	{
+		case "noop":
+			cycle++;
+			pixel = CheckPixel(cycle, register, display.Count());
+
+			line += pixel;
+
+			if (cycle % 40 == 0)
+			{
+				display.Add(line);
+				line = "";
+			}
+
+			break;
+		case "addx":
+			cycle++;
+			pixel = CheckPixel(cycle, register, display.Count());
+			line += pixel;
+
+			if (cycle % 40 == 0)
+			{
+				display.Add(line);
+				line = "";
+			}
+
+			cycle++;
+			pixel = CheckPixel(cycle, register, display.Count());
+			line += pixel;
+
+			register += operation.Value;
+
+			if (cycle % 40 == 0)
+			{
+				display.Add(line);
+				line = "";
+			}
+
+			break;
+	}
+
+}
+
+
+
+
+Console.WriteLine(display.Count());
+foreach (string displayLine2 in display)
+{
+	Console.WriteLine(displayLine2);
+}
+
+
 Console.ReadLine();
+string CheckPixel(int cycle, int register1, int linesCount)
+{
+	if (linesCount > 0)
+	{
+		cycle = cycle % 40;
+	}
+
+	if (register1.Between(cycle--, cycle++))
+	{
+		return "#";
+	}
+	else
+	{
+		return ".";
+	}
+}
 
 void CheckSignalStrength(List<int> ints, int i, List<int> list, int register1)
 {
 	if (ints.Contains(i))
 	{
 		list.Add(register1 * i);
+	}
+}
+
+void WritePixel(int cycle1, string[] strings, string? s)
+{
+	if (cycle1 > 40)
+	{
+		strings[(cycle1 - 1) % 40] = s;
+	}
+	else
+	{
+		strings[cycle1 - 1] = s;
 	}
 }
 
