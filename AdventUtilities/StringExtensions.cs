@@ -39,5 +39,20 @@ namespace AdventUtilities
             return grid;
         }
 
-    }
+        public static char[,] ToCharGrid(this string[] strings)
+        {
+            int width = strings.First().Length, height = strings.Length;
+            char[,] grid = new char[width, height];
+
+            for (int y = 0; y < (height); y++)
+	        {
+		        for (int x = 0; x < width; x++)
+		        {
+			        grid[x, y] = (strings[y].Substring(x, 1)).ToCharArray()[0];
+		        }
+	        }
+
+	        return grid;
+        }
+	}
 }
