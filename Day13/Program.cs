@@ -46,4 +46,46 @@ foreach (string[] chunk in chunks)
 
 Console.WriteLine(pairs.Count);
 
+foreach ((string, string) pair in pairs)
+{
+	PacketData packet = PacketData.Parse(pair.Item1);
+	packet = PacketData.Parse(pair.Item2);
+}
+
 Console.ReadLine();
+
+public class PacketData
+{
+	public static PacketData Parse(string input)
+	{
+        PacketData result = new PacketData();
+        PacketData context;
+        context = result;
+		foreach (char inputChar in input.Substring(1, input.Length-2))
+		{
+			if (char.IsNumber(inputChar))
+			{
+				context.Data.Add(int.Parse(inputChar.ToString()));
+			}
+			else if (inputChar == '[')
+			{
+				PacketData parent = context;
+				context = new PacketData() {Parent = parent};
+			}
+            else if (inputChar == ']')
+			{
+				context.Parent.Data.Add(context);
+                context = context.Parent;
+			}
+		}
+        return result;
+	}
+
+	public PacketData()
+	{
+		Data = new List<object>();
+	}
+	public List<Object> Data { get; set; }
+
+	public PacketData Parent { get; set; }
+}
