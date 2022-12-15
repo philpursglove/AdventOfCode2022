@@ -3,6 +3,7 @@
 
 
 using AdventUtilities;
+using NUnit.Framework.Constraints;
 
 List<string> input = System.IO.File.ReadAllLines("InputFile.txt").ToList();
 
@@ -58,7 +59,7 @@ foreach (string[] chunk in chunks)
 
 }
 
-for (int i = 0; i < 10000; i++)
+for (int i = 0; i < 1000; i++)
 {
 	Round();
 
@@ -140,13 +141,13 @@ public class Monkey
 	public Monkey(int number)
 	{
 		Name = number.ToString();
-		Items = new List<long>();
+		Items = new List<float>();
 		Operation = new Operation();
 	}
 
 	public string Name { get; set; }
 
-	public List<long> Items { get; set; }
+	public List<float> Items { get; set; }
 
 	public Operation Operation { get; set; }
 
@@ -159,9 +160,9 @@ public class Monkey
 
 	public void InspectItems()
 	{
-		List<long> newItems = new List<long>();
+		List<float> newItems = new List<float>();
 
-		foreach (long item in Items)
+		foreach (float item in Items)
 		{
 			InspectionCount += 1;
 
@@ -174,10 +175,10 @@ public class Monkey
 			switch (Operation.Operator)
 			{
 				case Operator.Multiply:
-					newItems.Add(item * Operation.Value);
+					newItems.Add((item * Operation.Value) % TestValue);
 					break;
 				case Operator.Add:
-					newItems.Add(item + Operation.Value);
+					newItems.Add((item + Operation.Value) % TestValue);
 					break;
 			}
 			if (square) Operation.Value = 0;
@@ -201,13 +202,11 @@ public class Monkey
 
 	public void TestItems()
 	{
-		long[] items = Items.ToArray();
+		float[] items = Items.ToArray();
 
 		for(int i = 0; i < items.Length; i++)
 		{
-			long remainder = items[i] % TestValue;
-
-			if (remainder == 0)
+			if (items[i] == 0)
 			{
 				TrueTarget.Items.Add(items[i]);
 			}
@@ -216,17 +215,18 @@ public class Monkey
 				FalseTarget.Items.Add(items[i]);
 			}
 
-			Items.Remove(items[i]);
 
 		}
+		Items.Clear();
 	}
+
 }
 
 public class Operation
 {
 	public Operator Operator { get; set; }
 
-	public long Value { get; set; }
+	public float Value { get; set; }
 }
 
 public enum Operator
