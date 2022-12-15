@@ -46,11 +46,16 @@ foreach (string[] chunk in chunks)
 
 Console.WriteLine(pairs.Count);
 
+List<ValueTuple<PacketData, PacketData>> packetPairs = new List<(PacketData, PacketData)>();
 foreach ((string, string) pair in pairs)
 {
-	PacketData packet = PacketData.Parse(pair.Item1);
-	packet = PacketData.Parse(pair.Item2);
+	PacketData leftPacket = PacketData.Parse(pair.Item1);
+	PacketData rightPacket = PacketData.Parse(pair.Item2);
+
+	packetPairs.Add((leftPacket, rightPacket));
 }
+
+Console.WriteLine(PacketData.Compare(packetPairs.First().Item1, packetPairs.First().Item2));
 
 Console.ReadLine();
 
@@ -81,6 +86,33 @@ public class PacketData
         return result;
 	}
 
+	public static bool Compare(PacketData left, PacketData right)
+	{
+		for (int i = 0; i < left.Data.Count; i++)
+		{
+			object leftItem = left.Data[i];
+			object rightItem = right.Data[i];
+
+			if (leftItem is int leftInt && rightItem is int rightInt)
+			{
+				if (leftInt < rightInt)
+				{
+					return true;
+				}
+				else if (rightInt > leftInt)
+				{
+					return false;
+				}
+			}
+			else if (leftItem is PacketData && rightItem is PacketData)
+			{
+
+			}
+		}
+
+		return false;
+	}
+
 	public PacketData()
 	{
 		Data = new List<object>();
@@ -88,4 +120,6 @@ public class PacketData
 	public List<Object> Data { get; set; }
 
 	public PacketData Parent { get; set; }
+
+    
 }
