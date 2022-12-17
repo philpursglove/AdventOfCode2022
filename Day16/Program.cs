@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+List<Valve> valves = new List<Valve>();
+
 List<string> input = new List<string>
 {
 	"Valve AA has flow rate=0; tunnels lead to valves DD, II, BB",
@@ -14,69 +16,52 @@ List<string> input = new List<string>
 	"Valve JJ has flow rate=21; tunnel leads to valve II"
 };
 
-Valve AA = new Valve();
-Valve BB = new Valve();
-Valve CC = new Valve();
-Valve DD = new Valve();
-Valve EE = new Valve();
-Valve FF = new Valve();
-Valve GG = new Valve();
-Valve HH = new Valve();
-Valve II = new Valve();
-Valve JJ = new Valve();
-
 Valve currentValve;
 foreach (string inputLine in input)
 {
 	string[] halves = inputLine.Split(";");
 	string[] firstHalf = halves[0].Split(" ");
-	currentValve = FindValve(firstHalf[1]);
+
+	currentValve = valves.FirstOrDefault(v => v.Name == firstHalf[1]);
+	if (currentValve == null)
+	{
+		currentValve = new Valve();
+	}
+
 	currentValve.Name = firstHalf[1];
 	currentValve.FlowRate = int.Parse(firstHalf[4].Replace("rate=", string.Empty));
 	string secondHalf = halves[1];
 	secondHalf = secondHalf.Replace(" tunnels lead to valves", string.Empty)
-		.Replace(" tunnels lead to valve", string.Empty).Replace(" ", string.Empty);
+		.Replace(" tunnel leads to valve", string.Empty).Replace(" ", string.Empty);
 	string[] linkedValves = secondHalf.Split(",");
 	foreach (string valveName in linkedValves)
 	{
-		currentValve.LinkedValves.Add(FindValve(valveName));
+		Valve linkedValve = valves.FirstOrDefault(v => v.Name == valveName);
+		if (linkedValve == null)
+		{
+			linkedValve = new Valve() {Name = valveName};
+			valves.Add(linkedValve);
+		}
+		currentValve.LinkedValves.Add(linkedValve);
+	}
+
+	if (!valves.Contains(currentValve))
+	{
+		valves.Add(currentValve);
 	}
 }
 
-Valve currentLocation = FindValve("AA");
+foreach (Valve valve in valves.OrderBy(v => v.Name))
+{
+	Console.WriteLine(valve.Name);
+}
+
 
 
 
 Console.ReadLine();
 
-Valve FindValve(string name)
-{
-	switch (name)
-	{
-		case "AA":
-			return AA;
-		case "BB":
-			return BB;
-		case "CC":
-			return CC;
-		case "DD":
-			return DD;
-		case "EE":
-			return EE;
-		case "FF":
-			return FF;
-		case "GG":
-			return GG;
-		case "HH":
-			return HH;
-		case "II":
-			return II;
-		case "JJ":
-			return JJ;
-	}
 
-	return null;
-}
 
 public class Valve
 {
