@@ -21,7 +21,7 @@ Monkey currentMonkey;
 List<string[]> chunks = input.Chunk(7).ToList();
 foreach (string[] chunk in chunks)
 {
-	string monkeyLine = chunk[0].Replace(":",string.Empty);
+	string monkeyLine = chunk[0].Replace(":", string.Empty);
 	currentMonkey = FindMonkey(int.Parse(monkeyLine.Last().ToString()));
 	string itemsLine = chunk[1].Substring(18);
 	string[] items = itemsLine.Split(",");
@@ -59,7 +59,7 @@ foreach (string[] chunk in chunks)
 
 }
 
-for (int i = 0; i < 1000; i++)
+for (int i = 0; i < 10000; i++)
 {
 	Round();
 
@@ -175,10 +175,10 @@ public class Monkey
 			switch (Operation.Operator)
 			{
 				case Operator.Multiply:
-					newItems.Add((item * Operation.Value) % TestValue);
+					newItems.Add((item * Operation.Value));
 					break;
 				case Operator.Add:
-					newItems.Add((item + Operation.Value) % TestValue);
+					newItems.Add((item + Operation.Value));
 					break;
 			}
 			if (square) Operation.Value = 0;
@@ -204,9 +204,25 @@ public class Monkey
 	{
 		float[] items = Items.ToArray();
 
-		for(int i = 0; i < items.Length; i++)
+		//for(int i = 0; i < items.Length; i++)
+		//{
+		//	if (items[i] == 0)
+		//	{
+		//		TrueTarget.Items.Add(items[i]);
+		//	}
+		//	else
+		//	{
+		//		FalseTarget.Items.Add(items[i]);
+		//	}
+
+
+		//}
+
+		for (int i = 0; i < items.Length; i++)
 		{
-			if (items[i] == 0)
+			float remainder = items[i] % TestValue;
+
+			if (remainder == 0)
 			{
 				TrueTarget.Items.Add(items[i]);
 			}
@@ -214,9 +230,8 @@ public class Monkey
 			{
 				FalseTarget.Items.Add(items[i]);
 			}
-
-
 		}
+
 		Items.Clear();
 	}
 

@@ -4,7 +4,7 @@
 	{
 		public static int ToAscii(this char letter)
 		{
-			return (int) letter;
+			return letter;
 		}
 
 		public static ValueTuple<int, int> FindValue(this char[,] grid, char searchValue, bool caseSensitive = false)
@@ -33,5 +33,11 @@
 
 			return new (-1,-1);
 		}
+
+        public static bool IsVowel(this char letter)
+        {
+			letter = char.ToLower(letter);
+            return letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u';
+        }
 	}
 }

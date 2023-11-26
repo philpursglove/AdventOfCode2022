@@ -1,6 +1,4 @@
 ﻿using System.Drawing;
-using System.Reflection.PortableExecutable;
-using System.Security.Cryptography;
 using NUnit.Framework;
 
 namespace AdventUtilities;
@@ -66,4 +64,21 @@ public class CharExtensionsTests
 	{
 		Assert.That(letter.ToAscii(), Is.EqualTo(expected));
 	}
+
+	[TestCase('a', true)]
+	[TestCase('e', true)]
+	[TestCase('i', true)]
+	[TestCase('o', true)]
+	[TestCase('u', true)]
+	[TestCase('A', true)]
+	[TestCase('E', true)]
+	[TestCase('I', true)]
+	[TestCase('O', true)]
+	[TestCase('U', true)]
+	[TestCase('b', false)]
+	[TestCase('B', false)]
+	public void IsVowel(char letter, bool expected)   
+    {
+        Assert.That(letter.IsVowel(), Is.EqualTo(expected));
+    }
 }
