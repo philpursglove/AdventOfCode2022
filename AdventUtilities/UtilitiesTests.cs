@@ -82,3 +82,9 @@ public class CharExtensionsTests
         Assert.That(letter.IsVowel(), Is.EqualTo(expected));
     }
 }
+
+[TestFixture]
+public class StringExtensionsTests
+{
+	
+}

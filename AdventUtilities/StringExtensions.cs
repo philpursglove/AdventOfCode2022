@@ -54,5 +54,10 @@ namespace AdventUtilities
 
 	        return grid;
         }
+
+        public static bool IsNumeric(this string str)
+        {
+            return str.All(char.IsNumber());
+        }
 	}
 }
